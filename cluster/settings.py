@@ -9,10 +9,12 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import environ
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -22,6 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qbroy6g(mr)gzunwm0x-r$=pb^p1lig(z3_4d7_=lltd)m3#@r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+root = environ.Path(__file__) - 2  # get root of the project
+env = environ.Env()
+env_file = os.path.join(str(root), '.env')
+
+environ.Env.read_env(env_file)  # reading .env file
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -72,11 +79,19 @@ WSGI_APPLICATION = 'cluster.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+DB_SCHEMA = env.str('DB_SCHEMA')
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'OPTIONS': {
+            'options': '-c search_path=' + DB_SCHEMA
+        },
+        'NAME': env.str('DB_NAME'),
+        'USER': env.str('DB_USER'),
+        'PASSWORD': env.str('DB_PASSWORD'),
+        'HOST': env.str('DB_HOST'),
+        'ATOMIC_REQUESTS': env.bool('DB_ATOMIC_REQUESTS'),
+    },
 }
 
 REST_FRAMEWORK = {
@@ -122,7 +137,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
+MEDIA_ROOT = env.str('MEDIA_ROOT')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

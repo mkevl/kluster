@@ -23,8 +23,8 @@ class InsuranceProvider(models.Model):
 
 
 class InsuranceType(Enum):
-    personal = "personal"
-    company = "company"
+    personal = "health"
+    company = "life"
 
 
 class PackageType(Enum):

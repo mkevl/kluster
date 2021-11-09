@@ -5,7 +5,7 @@ from rest_framework import routers
 from insurance.views import InsuranceProviderViewSet
 
 router = routers.DefaultRouter()
-router.register(r'users', InsuranceProviderViewSet)
+router.register(r'', InsuranceProviderViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework import viewsets
 
-# Create your views here.
+from insurance.models import InsuranceProvider
+from insurance.serializers import InsuranceProviderSerializer
+
+
+class InsuranceProviderViewSet(viewsets.ModelViewSet):
+    queryset = InsuranceProvider.objects.all()
+    serializer_class = InsuranceProviderSerializer

@@ -9,12 +9,8 @@ class InsuranceProviderAdmin(admin.ModelAdmin):
 
 
 class InsurancePackageAdmin(admin.ModelAdmin):
-    list_display = ('provider_name', 'insurance_type', 'package_type', 'price_per_month', 'price_last_updated_at')
-    list_filter = ('insurance_type', 'package_type')
-
-    @admin.display(ordering='provider__name')
-    def provider_name(self, obj):
-        return obj.provider.name
+    list_display = ('provider', 'insurance_type', 'package_type', 'price_per_month', 'price_last_updated_at')
+    list_filter = ('insurance_type', 'package_type', 'provider')
 
 
 admin.site.register(InsuranceProvider, InsuranceProviderAdmin)

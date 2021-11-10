@@ -50,3 +50,6 @@ class InsurancePackage(models.Model):
 
     class Meta:
         db_table = "insurance_package"
+
+    def __str__(self):
+        return f"{self.provider.name} - {self.insurance_type}, {self.package_type}"

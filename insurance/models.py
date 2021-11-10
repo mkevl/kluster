@@ -21,6 +21,9 @@ class InsuranceProvider(models.Model):
 
     list_display = ('name', 'updated_at')
 
+    class Meta:
+        db_table = "insurance_provider"
+
 
 class InsuranceType(Enum):
     personal = "health"
@@ -38,5 +41,9 @@ class InsurancePackage(models.Model):
     provider = ForeignKey(InsuranceProvider, on_delete=models.DO_NOTHING)
     price_per_month = DecimalField(decimal_places=2, max_digits=12)
     price_last_updated_at = DateTimeField(blank=True, null=True)
-    insurance_type = models.CharField(blank=False, choices=[(tag.value, tag.value) for tag in InsuranceType], max_length=20)
+    insurance_type = models.CharField(blank=False, choices=[(tag.value, tag.value) for tag in InsuranceType],
+                                      max_length=20)
     package_type = models.CharField(blank=False, choices=[(tag.value, tag.value) for tag in PackageType], max_length=20)
+
+    class Meta:
+        db_table = "insurance_package"

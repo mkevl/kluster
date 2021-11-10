@@ -83,16 +83,9 @@ WSGI_APPLICATION = 'cluster.wsgi.application'
 DB_SCHEMA = env.str('DB_SCHEMA')
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'OPTIONS': {
-            'options': '-c search_path=' + DB_SCHEMA
-        },
-        'NAME': env.str('DB_NAME'),
-        'USER': env.str('DB_USER'),
-        'PASSWORD': env.str('DB_PASSWORD'),
-        'HOST': env.str('DB_HOST'),
-        'ATOMIC_REQUESTS': env.bool('DB_ATOMIC_REQUESTS'),
-    },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 REST_FRAMEWORK = {

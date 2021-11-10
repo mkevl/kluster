@@ -19,10 +19,11 @@ class InsuranceProvider(models.Model):
     created_at = DateTimeField(blank=True, auto_now_add=True)
     updated_at = DateTimeField(blank=True, auto_now=True)
 
-    list_display = ('name', 'updated_at')
-
     class Meta:
         db_table = "insurance_provider"
+
+    def __str__(self):
+        return self.name
 
 
 class InsuranceType(Enum):
@@ -44,6 +45,11 @@ class InsurancePackage(models.Model):
     insurance_type = models.CharField(blank=False, choices=[(tag.value, tag.value) for tag in InsuranceType],
                                       max_length=20)
     package_type = models.CharField(blank=False, choices=[(tag.value, tag.value) for tag in PackageType], max_length=20)
+    created_at = DateTimeField(blank=True, auto_now_add=True)
+    updated_at = DateTimeField(blank=True, auto_now=True)
 
     class Meta:
         db_table = "insurance_package"
+
+    def __str__(self):
+        return f"{self.provider.name} - {self.insurance_type}, {self.package_type}"

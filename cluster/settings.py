@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'insurance.apps.InsuranceConfig',
+    'customers.apps.CustomersConfig',
     'rest_framework'
 ]
 

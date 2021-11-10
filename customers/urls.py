@@ -7,5 +7,5 @@ router = routers.DefaultRouter()
 router.register(r'', CustomersViewSet)
 
 urlpatterns = [
-                  path('/stats', view=get_customer_counts)
+                  path('stats', view=get_customer_counts)
               ] + router.urls

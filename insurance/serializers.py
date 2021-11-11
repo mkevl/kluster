@@ -3,6 +3,7 @@ from urllib import parse
 from rest_framework import serializers
 
 from cluster import settings
+from common.utils import construct_media_url
 from insurance.models import InsuranceProvider, InsurancePackage
 
 
@@ -22,13 +23,11 @@ class InsuranceProviderSerializer(serializers.Serializer):
         fields = ["uuid", "name", "name_en", "description", "key", "image", "created_at", "updated_at", "logo"]
 
     def get_provider_image_url(self, instance):
-        return self.construct_media_url(instance.provider_image.url)
+        return construct_media_url(instance.provider_image.url)
 
     def get_provider_logo_url(self, instance):
-        return self.construct_media_url(instance.provider_logo.url)
+        return construct_media_url(instance.provider_logo.url)
 
-    def construct_media_url(self, relative_url):
-        return parse.urlparse(settings.MEDIA_URL, relative_url).scheme
 
     def update(self, instance, validated_data):
         pass

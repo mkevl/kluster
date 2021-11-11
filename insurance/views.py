@@ -37,3 +37,12 @@ class InsurancePackageViewSet(viewsets.ModelViewSet):
             self.queryset = self.queryset.filter(*queries)
 
         return super(InsurancePackageViewSet, self).list(request, *args, **kwargs)
+
+    def update(self, request, *args, **kwargs):
+        return Response(status=403)
+
+    def create(self, request, *args, **kwargs):
+        return Response(status=403)
+
+    def destroy(self, request, *args, **kwargs):
+        return Response(status=403)

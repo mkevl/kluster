@@ -11,6 +11,15 @@ class CustomersViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
 
+    def update(self, request, *args, **kwargs):
+        return Response(status=403)
+
+    def create(self, request, *args, **kwargs):
+        return Response(status=403)
+
+    def destroy(self, request, *args, **kwargs):
+        return Response(status=403)
+
 
 @api_view(['GET'])
 @permission_classes([])

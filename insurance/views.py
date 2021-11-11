@@ -1,5 +1,6 @@
 from django.db.models import Q
 from rest_framework import viewsets
+from rest_framework.response import Response
 
 from insurance.models import InsuranceProvider, InsurancePackage
 from insurance.serializers import InsuranceProviderSerializer, InsurancePackageSerializer
@@ -8,6 +9,15 @@ from insurance.serializers import InsuranceProviderSerializer, InsurancePackageS
 class InsuranceProviderViewSet(viewsets.ModelViewSet):
     queryset = InsuranceProvider.objects.all()
     serializer_class = InsuranceProviderSerializer
+
+    def update(self, request, *args, **kwargs):
+        return Response(status=403)
+
+    def create(self, request, *args, **kwargs):
+        return Response(status=403)
+
+    def destroy(self, request, *args, **kwargs):
+        return Response(status=403)
 
 
 class InsurancePackageViewSet(viewsets.ModelViewSet):

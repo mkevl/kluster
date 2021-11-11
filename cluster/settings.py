@@ -33,8 +33,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'insurance.apps.InsuranceConfig',
     'customers.apps.CustomersConfig',
+    'feedback.apps.FeedbackConfig',
     'rest_framework'
 ]
 

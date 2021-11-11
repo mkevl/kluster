@@ -19,9 +19,9 @@ def get_customer_counts(request):
     queries = []
     if 'insurance_type' in query_params:
         queries.append(
-            Q(insurance_type=query_params.get('insurance_package__insurance_type')))
+            Q(insurance_package__insurance_type=query_params.get('insurance_type')))
     if 'package_type' in query_params:
-        queries.append(Q(package_type=query_params.get('insurance_package__package_type')))
+        queries.append(Q(insurance_package__package_type=query_params.get('package_type')))
 
     queryset = Customer.objects.filter(*queries)
     num_companies = queryset.filter(type=CustomerType.company.value).count()

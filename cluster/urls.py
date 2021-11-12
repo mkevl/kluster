@@ -25,4 +25,5 @@ urlpatterns = [
                   path('api/v1/insurance/', include('insurance.urls')),
                   path('api/v1/customers/', include('customers.urls')),
                   path('api/v1/feedback/', include('feedback.urls')),
+                  path('api/v1/faq/', include('faq.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

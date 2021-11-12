@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'insurance.apps.InsuranceConfig',
     'customers.apps.CustomersConfig',
     'feedback.apps.FeedbackConfig',
+    'faq.apps.FaqConfig',
     'rest_framework',
     'corsheaders',
 ]

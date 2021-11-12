@@ -2,22 +2,22 @@ import uuid as uuid
 from enum import Enum
 
 from django.db import models
-from django.db.models import TextField, DecimalField, UUIDField, DateTimeField, URLField, CharField, ImageField, \
-    ForeignKey
+from django.db.models import DecimalField, UUIDField, DateTimeField, ForeignKey
 
 
 class InsuranceProvider(models.Model):
-    uuid = UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = TextField(null=False)
-    name_en = TextField(blank=True, null=True)
-    key = CharField(null=False, unique=True, max_length=50)
-    description = TextField(null=False)
-    phone = TextField(blank=True, null=True)
-    email = TextField(blank=True, null=True)
-    provider_image = ImageField(blank=True)
-    provider_logo = ImageField(blank=True)
-    created_at = DateTimeField(blank=True, auto_now_add=True)
-    updated_at = DateTimeField(blank=True, auto_now=True)
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.TextField(null=False)
+    name_en = models.TextField(blank=True, null=True)
+    key = models.CharField(null=False, unique=True, max_length=50)
+    description = models.TextField(null=False)
+    phone = models.TextField(blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    site = models.URLField(blank=True, null=True)
+    provider_image = models.ImageField(blank=True)
+    provider_logo = models.ImageField(blank=True)
+    created_at = models.DateTimeField(blank=True, auto_now_add=True)
+    updated_at = models.DateTimeField(blank=True, auto_now=True)
 
     class Meta:
         db_table = "insurance_provider"

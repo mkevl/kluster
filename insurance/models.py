@@ -14,8 +14,8 @@ class InsuranceProvider(models.Model):
     phone = models.TextField(blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     site = models.URLField(blank=True, null=True)
-    provider_image = models.ImageField(blank=True)
-    provider_logo = models.ImageField(blank=True)
+    provider_image = models.ImageField()
+    provider_logo = models.ImageField()
     created_at = models.DateTimeField(blank=True, auto_now_add=True)
     updated_at = models.DateTimeField(blank=True, auto_now=True)
 

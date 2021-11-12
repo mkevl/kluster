@@ -21,7 +21,7 @@ class InsuranceProviderViewSet(viewsets.ModelViewSet):
 
 
 class InsurancePackageViewSet(viewsets.ModelViewSet):
-    queryset = InsurancePackage.objects.all()
+    queryset = InsurancePackage.objects.order_by('price_per_month').all()
     serializer_class = InsurancePackageSerializer
 
     def list(self, request, *args, **kwargs):

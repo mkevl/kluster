@@ -1,8 +1,5 @@
-from urllib import parse
-
 from rest_framework import serializers
 
-from cluster import settings
 from common.utils import construct_media_url
 from insurance.models import InsuranceProvider, InsurancePackage
 

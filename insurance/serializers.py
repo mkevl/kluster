@@ -18,7 +18,7 @@ class InsuranceProviderSerializer(serializers.Serializer):
 
     class Meta:
         model = InsuranceProvider
-        fields = ["uuid", "name", "name_en", "description", "key", "image", "created_at", "updated_at", "logo"]
+        fields = ["uuid", "name", "name_en", "description", "image", "created_at", "updated_at", "logo"]
 
     def get_provider_image_url(self, instance):
         return construct_media_url(instance.provider_image.url)

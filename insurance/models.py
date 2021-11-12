@@ -9,7 +9,6 @@ class InsuranceProvider(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.TextField(null=False)
     name_en = models.TextField(blank=True, null=True)
-    key = models.CharField(null=False, unique=True, max_length=50)
     description = models.TextField(null=False)
     phone = models.TextField(blank=True, null=True)
     email = models.EmailField(blank=True, null=True)

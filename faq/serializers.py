@@ -1,5 +1,7 @@
 from rest_framework import serializers
 
+from faq.models import FrequentlyAskedQuestion
+
 
 class FaqSerializer(serializers.Serializer):
     uuid = serializers.UUIDField(read_only=True)
@@ -9,6 +11,7 @@ class FaqSerializer(serializers.Serializer):
     updated_at = serializers.DateTimeField(read_only=True)
 
     class Meta:
+        model = FrequentlyAskedQuestion
         fields = ("uuid", "question", "answer", "created_at", "updated_at")
 
     def update(self, instance, validated_data):

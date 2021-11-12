@@ -12,7 +12,8 @@ class InsuranceProviderSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=200)
     name_en = serializers.CharField(max_length=200)
     description = serializers.CharField(max_length=500)
-    key = serializers.CharField(max_length=20)
+    phone = serializers.CharField(max_length=20)
+    site = serializers.URLField(max_length=20)
     provider_image_url = serializers.SerializerMethodField()
     provider_logo_url = serializers.SerializerMethodField()
     created_at = serializers.DateTimeField()
@@ -27,7 +28,6 @@ class InsuranceProviderSerializer(serializers.Serializer):
 
     def get_provider_logo_url(self, instance):
         return construct_media_url(instance.provider_logo.url)
-
 
     def update(self, instance, validated_data):
         pass

@@ -17,18 +17,14 @@ import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qbroy6g(mr)gzunwm0x-r$=pb^p1lig(z3_4d7_=lltd)m3#@r'
-
-# SECURITY WARNING: don't run with debug turned on in production!
 root = environ.Path(__file__) - 2  # get root of the project
 env = environ.Env()
 env_file = os.path.join(str(root), '.env')
 
 environ.Env.read_env(env_file)  # reading .env file
+
+SECRET_KEY = env.str('SECRET_KEY')
+
 DEBUG = env.bool('DEBUG')
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
@@ -57,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'cluster.urls'
@@ -108,9 +105,6 @@ REST_FRAMEWORK = {
     ]
 }
 
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     # {
     #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -143,6 +137,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
 MEDIA_ROOT = env.str('MEDIA_ROOT')
 MEDIA_URL = env.str('MEDIA_URL')
 # Default primary key field type

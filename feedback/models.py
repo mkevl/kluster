@@ -6,7 +6,7 @@ class UserFeedback(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user_full_name = models.CharField(blank=False, max_length=100)
     feedback_text = models.TextField(blank=False, max_length=500)
-    image = models.ImageField()
+    image = models.ImageField(blank=True, null=True)
     created_at = models.DateTimeField(blank=True, auto_now_add=True)
     updated_at = models.DateTimeField(blank=True, auto_now=True)
 

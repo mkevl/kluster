@@ -16,7 +16,6 @@ from pathlib import Path
 import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 root = environ.Path(__file__) - 2  # get root of the project
 env = environ.Env()
 env_file = os.path.join(str(root), '.env')
@@ -148,3 +147,7 @@ MEDIA_URL = env.str('MEDIA_URL')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import django_heroku
+
+django_heroku.settings(locals())

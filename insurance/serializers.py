@@ -10,7 +10,7 @@ class InsuranceProviderSerializer(serializers.Serializer):
     name_en = serializers.CharField(max_length=200)
     description = serializers.CharField(max_length=500)
     phone = serializers.CharField(max_length=20)
-    site = serializers.URLField(max_length=20)
+    site = serializers.URLField()
     provider_image_url = serializers.SerializerMethodField()
     provider_logo_url = serializers.SerializerMethodField()
     created_at = serializers.DateTimeField()
@@ -21,10 +21,12 @@ class InsuranceProviderSerializer(serializers.Serializer):
         fields = ["uuid", "name", "name_en", "description", "image", "created_at", "updated_at", "logo"]
 
     def get_provider_image_url(self, instance):
-        return construct_media_url(instance.provider_image.url)
+        # return construct_media_url(instance.provider_image.url)
+        return instance.provider_image
 
     def get_provider_logo_url(self, instance):
-        return construct_media_url(instance.provider_logo.url)
+        # return construct_media_url(instance.provider_logo.url)
+        return instance.provider_logo
 
     def update(self, instance, validated_data):
         pass

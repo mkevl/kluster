@@ -23,7 +23,8 @@ class UserFeedbackSerializer(serializers.Serializer):
         pass
 
     def get_image_url(self, instance):
-        return construct_media_url(instance.image.url)
+        # return construct_media_url(instance.image.url)
+        return instance.image
 
 
 

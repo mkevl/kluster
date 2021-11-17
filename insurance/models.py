@@ -12,9 +12,9 @@ class InsuranceProvider(models.Model):
     description = models.TextField(null=False)
     phone = models.TextField(blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
-    site = models.URLField(blank=True, null=True)
-    provider_image = models.URLField(blank=True, null=True, max_length=500)  # Revert to ImageField
-    provider_logo = models.URLField(blank=True, null=True, max_length=500)  # Revert to ImageField
+    site = models.TextField(blank=True, null=True)
+    provider_image = models.TextField(blank=True, null=True, max_length=500)  # Revert to ImageField
+    provider_logo = models.TextField(blank=True, null=True, max_length=500)  # Revert to ImageField
     created_at = models.DateTimeField(blank=True, auto_now_add=True)
     updated_at = models.DateTimeField(blank=True, auto_now=True)
 

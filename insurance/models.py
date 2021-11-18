@@ -39,7 +39,7 @@ class PackageType(Enum):
 class InsurancePackage(models.Model):
     uuid = UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     provider = ForeignKey(InsuranceProvider, on_delete=models.DO_NOTHING)
-    price_per_month = DecimalField(decimal_places=2, max_digits=12)
+    price_per_month = DecimalField(decimal_places=2, max_digits=12, blank=True, null=True)
     price_last_updated_at = DateTimeField(blank=True, null=True)
     insurance_type = models.CharField(blank=False, choices=[(tag.value, tag.value) for tag in InsuranceType],
                                       max_length=20)

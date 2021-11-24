@@ -7,7 +7,7 @@ from insurance.serializers import InsuranceProviderSerializer, InsurancePackageS
 
 
 class InsuranceProviderViewSet(viewsets.ModelViewSet):
-    queryset = InsuranceProvider.objects.all()
+    queryset = InsuranceProvider.objects.order_by('-is_active', 'position').all()
     serializer_class = InsuranceProviderSerializer
 
     def update(self, request, *args, **kwargs):

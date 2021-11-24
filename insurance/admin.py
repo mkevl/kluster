@@ -5,7 +5,7 @@ from insurance.models import InsuranceProvider, InsurancePackage
 
 
 class InsuranceProviderAdmin(admin.ModelAdmin):
-    list_display = ('name', 'updated_at')
+    list_display = ('position', 'name', 'updated_at', 'is_active')
 
 
 class InsurancePackageAdmin(admin.ModelAdmin):

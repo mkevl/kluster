@@ -1,8 +1,9 @@
 import uuid as uuid
 from enum import Enum
 
+from django.core.exceptions import ValidationError
 from django.db import models
-from django.db.models import DecimalField, UUIDField, DateTimeField, ForeignKey
+from django.db.models import DecimalField, UUIDField, DateTimeField, ForeignKey, Max
 
 
 class InsuranceProvider(models.Model):
@@ -15,11 +16,27 @@ class InsuranceProvider(models.Model):
     site = models.TextField(blank=True, null=True)
     provider_image = models.TextField(blank=True, null=True, max_length=500)  # Revert to ImageField
     provider_logo = models.TextField(blank=True, null=True, max_length=500)  # Revert to ImageField
+    position = models.PositiveIntegerField(primary_key=False, blank=True, null=True)
+    is_active = models.BooleanField(default=False)
     created_at = models.DateTimeField(blank=True, auto_now_add=True)
     updated_at = models.DateTimeField(blank=True, auto_now=True)
 
     class Meta:
         db_table = "insurance_provider"
+
+    def clean(self):
+        if self.is_active:
+            num_active_providers = InsuranceProvider.objects.filter(is_active=True).exclude(pk=self.uuid).count()
+            if num_active_providers > 0:
+                raise ValidationError(
+                    {"is_active": ["Cannot mark provider as active - other provider is already marked as active"]})
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        if self.position is None:
+            max_position = InsuranceProvider.objects.filter(name='asd').aggregate(Max('position')).get('position__max') or 0
+            self.position = max_position + 1
+        super(InsuranceProvider, self).save(force_insert, force_update, using, update_fields)
 
     def __str__(self):
         return self.name

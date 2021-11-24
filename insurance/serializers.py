@@ -10,6 +10,8 @@ class InsuranceProviderSerializer(serializers.Serializer):
     name_en = serializers.CharField(max_length=200)
     description = serializers.CharField(max_length=500)
     phone = serializers.CharField(max_length=20)
+    position = serializers.IntegerField()
+    is_active = serializers.BooleanField()
     site = serializers.URLField()
     provider_image_url = serializers.SerializerMethodField()
     provider_logo_url = serializers.SerializerMethodField()

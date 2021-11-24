@@ -44,6 +44,7 @@ class InsurancePackageSerializer(serializers.Serializer):
     price_last_updated_at = serializers.DateTimeField()
     insurance_type = serializers.CharField(max_length=20)
     package_type = serializers.CharField(max_length=20)
+    is_best_offer = serializers.BooleanField()
 
     class Meta:
         model = InsurancePackage

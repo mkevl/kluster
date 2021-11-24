@@ -9,7 +9,8 @@ class InsuranceProviderAdmin(admin.ModelAdmin):
 
 
 class InsurancePackageAdmin(admin.ModelAdmin):
-    list_display = ('provider', 'insurance_type', 'package_type', 'price_per_month', 'price_last_updated_at')
+    list_display = ('provider', 'insurance_type', 'package_type', 'price_per_month', 'price_last_updated_at',
+                    'is_best_offer')
     list_filter = ('insurance_type', 'package_type', 'provider')
 
 

@@ -34,7 +34,8 @@ class InsuranceProvider(models.Model):
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         if self.position is None:
-            max_position = InsuranceProvider.objects.filter(name='asd').aggregate(Max('position')).get('position__max') or 0
+            max_position = InsuranceProvider.objects.filter(name='asd').aggregate(Max('position')).get(
+                'position__max') or 0
             self.position = max_position + 1
         super(InsuranceProvider, self).save(force_insert, force_update, using, update_fields)
 
@@ -60,6 +61,7 @@ class InsurancePackage(models.Model):
     price_last_updated_at = DateTimeField(blank=True, null=True)
     insurance_type = models.CharField(blank=False, choices=[(tag.value, tag.value) for tag in InsuranceType],
                                       max_length=20)
+    is_best_offer = models.BooleanField(default=False)
     package_type = models.CharField(blank=False, choices=[(tag.value, tag.value) for tag in PackageType], max_length=20)
     created_at = DateTimeField(blank=True, auto_now_add=True)
     updated_at = DateTimeField(blank=True, auto_now=True)

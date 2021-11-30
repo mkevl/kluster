@@ -18,6 +18,7 @@ class InsuranceProvider(models.Model):
     provider_logo = models.TextField(blank=True, null=True, max_length=500)  # Revert to ImageField
     position = models.PositiveIntegerField(primary_key=False, blank=True, null=True)
     is_active = models.BooleanField(default=False)
+    is_hidden = models.BooleanField(default=False)
     created_at = models.DateTimeField(blank=True, auto_now_add=True)
     updated_at = models.DateTimeField(blank=True, auto_now=True)
 

@@ -12,6 +12,7 @@ class InsuranceProviderSerializer(serializers.Serializer):
     phone = serializers.CharField(max_length=20)
     position = serializers.IntegerField()
     is_active = serializers.BooleanField()
+    is_hidden = serializers.BooleanField()
     site = serializers.URLField()
     provider_image_url = serializers.SerializerMethodField()
     provider_logo_url = serializers.SerializerMethodField()
